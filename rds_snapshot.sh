@@ -42,12 +42,6 @@ mysqldump -u satyam --databases $database \
 #Uploading backup on s3
 aws s3 cp "$WORKSPACE/backupdb_$timestamp.sql.gz" s3://testdb-backup
 
-#Giving public read permission to s3 object
-#aws s3api put-object-acl \
-#--bucket testdb-backup \
-    #--key backupdb_$timestamp.sql.gz \
-    #--acl public-read
-
 #deleting dbInstance
 aws rds delete-db-instance \
 --db-instance-identifier $db_instance_identifier-$timestamp \
